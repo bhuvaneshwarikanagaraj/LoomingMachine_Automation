@@ -1,4 +1,4 @@
-Once the IDE is installed on setup page we can directly install the XC8 Complier.
+Once the IDE is installed.we can directly install the XC8 Complier when the new file is been created.
 
 Link is given below
 
