@@ -1,0 +1,14 @@
+
+The flow can be flow can be used to complete the PHASE-1
+
+1.Menu screen Scrowling
+
+2.Loom Settings
+
+3.Dhothi Settings
+
+4.Saving Loom/Dhothi into EPROM
+
+5.Dhothi Settings Display
+
+6.Reset - Can be done after the Relay phase implementation
