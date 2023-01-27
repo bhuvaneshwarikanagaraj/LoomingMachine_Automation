@@ -1,0 +1,327 @@
+[p GLOBOPT AUTOSTATIC LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F46K22 ]
+[d frameptr 4065 ]
+"155 /home/nawinrajkumar/MPLABXProjects/Loom.X/config.h
+[e E5853 . `uc
+SYSTEM_HALTED 0
+SYSTEM_RUNNING 1
+SYSTEM_PRE_BREAK 2
+SYSTEM_BREAK 3
+SYSTEM_FORWARD_PICK 4
+SYSTEM_REVERSE_PICK 5
+SYSTEM_SINGLE_PICK 6
+SYSTEM_SETTING 7
+]
+"165
+[e E5869 . `uc
+LCD_REFRESH 0
+LCD_RUNNING 1
+LCD_STOPPED 2
+LCD_PULSE_COUNT 3
+LCD_NO_PULSE 4
+LCD_NO_WEFT 5
+LCD_ANTI_WEFT 6
+LCD_DATA_SAVED 7
+LCD_DATA_FORWARD 8
+LCD_DATA_REVERSE 9
+LCD_DATA_WARP 10
+LCD_DATA_SINGLE_PICK 11
+LCD_DATA_SETTINGS 12
+LCD_DATA_PNEUMATIC 13
+]
+"155
+[e E5889 . `uc
+SYSTEM_HALTED 0
+SYSTEM_RUNNING 1
+SYSTEM_PRE_BREAK 2
+SYSTEM_BREAK 3
+SYSTEM_FORWARD_PICK 4
+SYSTEM_REVERSE_PICK 5
+SYSTEM_SINGLE_PICK 6
+SYSTEM_SETTING 7
+]
+"165
+[e E5905 . `uc
+LCD_REFRESH 0
+LCD_RUNNING 1
+LCD_STOPPED 2
+LCD_PULSE_COUNT 3
+LCD_NO_PULSE 4
+LCD_NO_WEFT 5
+LCD_ANTI_WEFT 6
+LCD_DATA_SAVED 7
+LCD_DATA_FORWARD 8
+LCD_DATA_REVERSE 9
+LCD_DATA_WARP 10
+LCD_DATA_SINGLE_PICK 11
+LCD_DATA_SETTINGS 12
+LCD_DATA_PNEUMATIC 13
+]
+"62 /opt/microchip/xc8/v2.40/pic/sources/c90/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 /opt/microchip/xc8/v2.40/pic/sources/c90/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"54 /opt/microchip/xc8/v2.40/pic/sources/c90/common/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 /opt/microchip/xc8/v2.40/pic/sources/c90/common/ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"19 /opt/microchip/xc8/v2.40/pic/sources/c90/common/ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"7 /opt/microchip/xc8/v2.40/pic/sources/c90/common/lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"7 /opt/microchip/xc8/v2.40/pic/sources/c90/common/lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 /opt/microchip/xc8/v2.40/pic/sources/c90/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 3 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 3 0 ]
+"11 /opt/microchip/xc8/v2.40/pic/sources/c90/common/sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 3 0 ]
+"8 /opt/microchip/xc8/v2.40/pic/sources/c90/common/sprcmul.c
+[v ___flmul __flmul `(d  1 e 3 0 ]
+"15 /opt/microchip/xc8/v2.40/pic/sources/c90/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 /opt/microchip/xc8/v2.40/pic/sources/c90/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 /opt/microchip/xc8/v2.40/pic/sources/c90/common/Umul64.c
+[v ___omul __omul `(ul  1 e 4 0 ]
+"11 /home/nawinrajkumar/MPLABXProjects/Loom.X/lcd.c
+[v _SendLcdCommand SendLcdCommand `(v  1 s 1 SendLcdCommand ]
+"27
+[v _SendLcdData SendLcdData `(v  1 s 1 SendLcdData ]
+"52
+[v _LcdInit LcdInit `(v  1 e 1 0 ]
+"72
+[v _LcdDisplayString LcdDisplayString `(v  1 e 1 0 ]
+"90
+[v _LcdDisplayChar LcdDisplayChar `(v  1 e 1 0 ]
+"104
+[v _ValidateNumber ValidateNumber `(uc  1 e 1 0 ]
+"148
+[v _LcdClearDisplay LcdClearDisplay `(v  1 e 1 0 ]
+"21 /home/nawinrajkumar/MPLABXProjects/Loom.X/main.c
+[v _main main `(v  1 e 1 0 ]
+"67
+[v _loom_settings loom_settings `(v  1 e 1 0 ]
+"76
+[v _dhoti_settings dhoti_settings `(v  1 e 1 0 ]
+"83
+[v _reset reset `(v  1 e 1 0 ]
+[s S71 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"6636 /opt/microchip/xc8/v2.40/pic/include/proc/pic18f46k22.h
+[s S80 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 KBI0 1 0 :1:4 
+`uc 1 KBI1 1 0 :1:5 
+`uc 1 KBI2 1 0 :1:6 
+`uc 1 KBI3 1 0 :1:7 
+]
+[s S89 . 1 `uc 1 AN12 1 0 :1:0 
+`uc 1 AN10 1 0 :1:1 
+`uc 1 AN8 1 0 :1:2 
+`uc 1 AN9 1 0 :1:3 
+`uc 1 AN11 1 0 :1:4 
+`uc 1 AN13 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S98 . 1 `uc 1 FLT0 1 0 :1:0 
+`uc 1 C12IN3M 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2M 1 0 :1:3 
+`uc 1 T5G 1 0 :1:4 
+`uc 1 T1G 1 0 :1:5 
+]
+[s S105 . 1 `uc 1 SRI 1 0 :1:0 
+`uc 1 C12IN3N 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2N 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 CCP3 1 0 :1:5 
+]
+[s S112 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CTED1 1 0 :1:2 
+`uc 1 CTED2 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 T3CKI 1 0 :1:5 
+]
+[s S118 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 P2A 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 P3A 1 0 :1:5 
+]
+[s S123 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S126 . 1 `S71 1 . 1 0 `S80 1 . 1 0 `S89 1 . 1 0 `S98 1 . 1 0 `S105 1 . 1 0 `S112 1 . 1 0 `S118 1 . 1 0 `S123 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES126  1 e 1 @3969 ]
+[s S207 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"6908
+[s S216 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 T5CKI 1 0 :1:2 
+`uc 1 SCK 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SDO 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S225 . 1 `uc 1 P2B 1 0 :1:0 
+`uc 1 P2A 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 SCL 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S234 . 1 `uc 1 T1CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 SCK1 1 0 :1:3 
+`uc 1 SDI1 1 0 :1:4 
+`uc 1 SDO1 1 0 :1:5 
+`uc 1 TX1 1 0 :1:6 
+`uc 1 RX1 1 0 :1:7 
+]
+[s S243 . 1 `uc 1 T3CKI 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 CTPLS 1 0 :1:2 
+`uc 1 SCL1 1 0 :1:3 
+`uc 1 SDA1 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK1 1 0 :1:6 
+`uc 1 DT1 1 0 :1:7 
+]
+[s S252 . 1 `uc 1 T3G 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 AN14 1 0 :1:2 
+`uc 1 AN15 1 0 :1:3 
+`uc 1 AN16 1 0 :1:4 
+`uc 1 AN17 1 0 :1:5 
+`uc 1 AN18 1 0 :1:6 
+`uc 1 AN19 1 0 :1:7 
+]
+[s S261 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+`uc 1 PA1 1 0 :1:2 
+]
+[u S265 . 1 `S207 1 . 1 0 `S216 1 . 1 0 `S225 1 . 1 0 `S234 1 . 1 0 `S243 1 . 1 0 `S252 1 . 1 0 `S261 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES265  1 e 1 @3970 ]
+"7897
+[v _LATD LATD `VEuc  1 e 1 @3980 ]
+"8727
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"139 /home/nawinrajkumar/MPLABXProjects/Loom.X/config.h
+[v ___PulseCount __PulseCount `VEuc  1 e 1 0 ]
+"140
+[v ___PrevPulseState __PrevPulseState `VEuc  1 e 1 0 ]
+"141
+[v ___ms10TickPulse __ms10TickPulse `VEuc  1 e 1 0 ]
+"155
+[v ___SystemState __SystemState `VEE5853  1 e 1 0 ]
+"156
+[v ___DispPulseCount __DispPulseCount `VEus  1 e 2 0 ]
+"157
+[v ___StopPulseCount __StopPulseCount `VEus  1 e 2 0 ]
+"161
+[v ___MeterPulseCount __MeterPulseCount `VEus  1 e 2 0 ]
+"163
+[v ___RelayOnOffDelay __RelayOnOffDelay `VEus  1 e 2 0 ]
+"7 /home/nawinrajkumar/MPLABXProjects/Loom.X/lcd.c
+[v _DataArray DataArray `[5]uc  1 s 5 DataArray ]
+"21 /home/nawinrajkumar/MPLABXProjects/Loom.X/main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"27
+[v main@i i `i  1 a 2 160 ]
+"23
+[v main@arr arr `[4][40]uc  1 a 160 0 ]
+"22
+[v main@F5987 F5987 `[4][40]uc  1 s 160 F5987 ]
+"65
+} 0
+"83
+[v _reset reset `(v  1 e 1 0 ]
+{
+"88
+} 0
+"67
+[v _loom_settings loom_settings `(v  1 e 1 0 ]
+{
+"74
+} 0
+"76
+[v _dhoti_settings dhoti_settings `(v  1 e 1 0 ]
+{
+"81
+} 0
+"72 /home/nawinrajkumar/MPLABXProjects/Loom.X/lcd.c
+[v _LcdDisplayString LcdDisplayString `(v  1 e 1 0 ]
+{
+[v LcdDisplayString@RowNum RowNum `uc  1 a 1 wreg ]
+[v LcdDisplayString@RowNum RowNum `uc  1 a 1 wreg ]
+[v LcdDisplayString@Pos Pos `uc  1 p 1 6 ]
+[v LcdDisplayString@Data Data `*.35uc  1 p 2 7 ]
+"74
+[v LcdDisplayString@RowNum RowNum `uc  1 a 1 9 ]
+"88
+} 0
+"27
+[v _SendLcdData SendLcdData `(v  1 s 1 SendLcdData ]
+{
+[v SendLcdData@Data Data `uc  1 a 1 wreg ]
+[v SendLcdData@Data Data `uc  1 a 1 wreg ]
+"29
+[v SendLcdData@Data Data `uc  1 a 1 2 ]
+"41
+} 0
+"148
+[v _LcdClearDisplay LcdClearDisplay `(v  1 e 1 0 ]
+{
+"151
+} 0
+"15 /opt/microchip/xc8/v2.40/pic/sources/c90/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"52 /home/nawinrajkumar/MPLABXProjects/Loom.X/lcd.c
+[v _LcdInit LcdInit `(v  1 e 1 0 ]
+{
+"70
+} 0
+"11
+[v _SendLcdCommand SendLcdCommand `(v  1 s 1 SendLcdCommand ]
+{
+[v SendLcdCommand@Command Command `uc  1 a 1 wreg ]
+[v SendLcdCommand@Command Command `uc  1 a 1 wreg ]
+"13
+[v SendLcdCommand@Command Command `uc  1 a 1 2 ]
+"25
+} 0

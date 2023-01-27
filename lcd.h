@@ -1,102 +1,51 @@
+#include <xc.h> // include processor files - each processor file is guarded.  
 
-#define LCD.h
 
-void Lcd_SetBit(char data_bit) //Based on the Hex value Set the Bits of the Data Lines
-{
-	if(data_bit& 1) 
-		D4 = 1;
-	else
-		D4 = 0;
+#ifndef XC_HEADER_LCD_H
+#define	XC_HEADER_LCD_H
 
-	if(data_bit& 2)
-		D5 = 1;
-	else
-		D5 = 0;
+#include <xc.h>
 
-	if(data_bit& 4)
-		D6 = 1;
-	else
-		D6 = 0;
+#define LCD_ON_CURSOR_BLINKING          0X0F
+#define LCD_CLEAR_DISPLAY               0X01
+#define LCD_RETURN_HOME                 0X02
+#define LCD_RESET                       0X03
+#define LCD_DECREMENT_CURSOR            0X10 //(SHIFT CURSOR TO LEFT) 
+#define LCD_INCREMENT_CURSOR            0X14 //(SHIFT CURSOR TO RIGHT)
+#define LCD_SHIFT_DISPLAY_RIGHT         0X05
+#define LCD_SHIFT_DISPLAY_LEFT          0X07
+#define LCD_DISPLAY_ON_CURSOR_ON        0X0E
+#define LCD_4BYTE_DISPLAY_MODE          0X28
+#define LCD_FIRST_LINE                  0X80
+#define LCD_SECOND_LINE                 0XC0
+#define LCD_2_LINES_AND_5X7_MATRIX      0X38
+#define LCD_ACTIVATE_SECOND_LINE        0X3C
+#define LCD_DISPLAY_OFF_CURSOR_OFF      0X08
+#define LCD_DISPLAY_ON_CURSOR_OFF       0X0C
 
-	if(data_bit& 8) 
-		D7 = 1;
-	else
-		D7 = 0;
-}
+void LcdInit( void );
+void LcdRefresh( void );
 
-void Lcd_Cmd(char a)
-{
-	RS = 0;           
-	Lcd_SetBit(a); //Incoming Hex value
-	EN  = 1;         
-        __delay_ms(4);
-        EN  = 0;         
-}
+void LcdDisplayString(unsigned char RowNum, unsigned char Pos, char * Data);
 
-Lcd_Clear()
-{
-	Lcd_Cmd(0); //Clear the LCD
-	Lcd_Cmd(1); //Move the cursor to first position
-}
+void LcdDisplayChar(unsigned char RowNum, unsigned char Pos, char  Data);
 
-void Lcd_Set_Cursor(char a, char b)
-{
-	char temp,z,y;
-	if(a== 1)
-	{
-	  temp = 0x80 + b - 1; //80H is used to move the cursor
-		z = temp>>4; //Lower 8-bits
-		y = temp & 0x0F; //Upper 8-bits
-		Lcd_Cmd(z); //Set Row
-		Lcd_Cmd(y); //Set Column
-	}
-	else if(a== 2)
-	{
-		temp = 0xC0 + b - 1;
-		z = temp>>4; //Lower 8-bits
-		y = temp & 0x0F; //Upper 8-bits
-		Lcd_Cmd(z); //Set Row
-		Lcd_Cmd(y); //Set Column
-	}
-}
+void LcdDisplayCharNumber(unsigned char RowNum, unsigned char Pos, unsigned char Data);
 
-void Lcd_Start()
-{
-  Lcd_SetBit(0x00);
-  for(int i=1065244; i<=0; i--)  NOP();  
-  Lcd_Cmd(0x03);
-	__delay_ms(5);
-  Lcd_Cmd(0x03);
-	__delay_ms(11);
-  Lcd_Cmd(0x03); 
-  Lcd_Cmd(0x02); //02H is used for Return home -> Clears the RAM and initializes the LCD
-  Lcd_Cmd(0x02); //02H is used for Return home -> Clears the RAM and initializes the LCD
-  Lcd_Cmd(0x08); //Select Row 1
-  Lcd_Cmd(0x00); //Clear Row 1 Display
-  Lcd_Cmd(0x0C); //Select Row 2
-  Lcd_Cmd(0x00); //Clear Row 2 Display
-  Lcd_Cmd(0x06);
-}
+void LcdClearDisplay (void);
 
-void Lcd_Print_Char(char data)  //Send 8-bits through 4-bit mode
-{
-   char Lower_Nibble,Upper_Nibble;
-   Lower_Nibble = data&0x0F;
-   Upper_Nibble = data&0xF0;
-   RS = 1;             // => RS = 1
-   Lcd_SetBit(Upper_Nibble>>4);             //Send upper half by shifting by 4
-   EN = 1;
-   for(int i=2130483; i<=0; i--)  NOP(); 
-   EN = 0;
-   Lcd_SetBit(Lower_Nibble); //Send Lower half
-   EN = 1;
-   for(int i=2130483; i<=0; i--)  NOP();
-   EN = 0;
-}
+unsigned char LcdDisplayNumber(unsigned char RowNum, unsigned char Pos, unsigned short Data);
 
-void Lcd_Print_String(char *a)
-{
-	int i;
-	for(i=0;a[i]!='\0';i++)
-	   Lcd_Print_Char(a[i]);  //Split the string using pointers and call the Char function 
-}
+void LcdDisplayOnCursorOn( unsigned char RowNum, unsigned char Pos );
+
+void LcdSetPos( unsigned char RowNum, unsigned char Pos );
+
+void LcdDisplayOnCursorOff( void );
+
+void LcdDisplayOffCursorOff( void );
+
+void LcdDisplayShiftCursorRight( void );
+
+void LcdMenuIncrementChar( void );
+
+#endif

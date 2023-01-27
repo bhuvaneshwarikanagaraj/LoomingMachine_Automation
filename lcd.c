@@ -1,47 +1,192 @@
+#include <xc.h>
 #include "lcd.h"
+#include "config.h"
+#define LATD LATD
+#define TRISD TRISD
 
-void LCD_Init() {
-    __delay_ms(20); // wait for 20 milliseconds
-    LCD_Command(0x38); // set 8-bit mode, 2 lines, and 5x7 font
-    LCD_Command(0x0C); // turn on display and cursor
-    LCD_Command(0x06); // set cursor direction to right
-    LCD_Command(0x01); // clear the display
+static char DataArray[5];
+
+#define _XTAL_FREQ 20000000
+
+static void SendLcdCommand( unsigned char Command)
+{
+    LATD &= ~(1<<2); //  Register Select as Command
+    LATD = (Command & 0XF0)|(LATD &0x0F) ; // Write 4 bit MSB in Data line 
+    
+    LATD |= (1<<3); // LCD Enable
+    __delay_ms(5); // Delay
+    LATD &= ~(1<<3); // LCD Disable
+    
+    LATD = (unsigned char)((Command & 0X0F) << 4) |(LATD &0x0F); // Write 4 bit LSB in Data line 
+    
+    LATD |= (1<<3); // LCD Enable
+    __delay_ms(5); // Delay
+    LATD &= ~(1<<3); // LCD Disable
 }
 
-void LCD_Command(unsigned char cmd) {
-    RS = 0; // select command register
-    D4 = (cmd & 1); // send least significant bit (LSB)
-    D5 = (cmd & 2); // send next bit
-    D6 = (cmd & 4); // send next bit
-    D7 = (cmd & 8); // send most significant bit (MSB)
-    EN = 1; // enable the LCD
-    __delay_us(1); // wait for 1 microsecond
-    EN = 0; // disable the LCD
-    __delay_us(1); // wait for 1 microsecond
-    D4 = (cmd & 16); // send next bit
-    D5 = (cmd & 32); // send next bit
-    D6 = (cmd & 64); // send next bit
-    D7 = (cmd & 128); // send next bit
-    EN = 1; // enable the LCD
-    __delay_us(1); // wait for 1 microsecond
-    EN = 0; // disable the LCD
-    __delay_ms(2); // wait for 2 milliseconds
+static void SendLcdData( unsigned char Data)
+{
+    LATD |= (1<<2); //  Register Select as Data
+    LATD = (Data & 0XF0) |(LATD &0x0F) ; // Write 4 bit MSB in Data line 
+    
+    LATD |= (1<<3); // LCD Enable
+    __delay_ms(5); // Delay
+    LATD &= ~(1<<3); // LCD Disable
+    
+    LATD = (unsigned char)((Data & 0X0F) << 4) |(LATD &0x0F); // Write 4 bit LSB in Data line 
+    
+    LATD |= (1<<3); // LCD Enable
+    __delay_ms(5); // Delay
+    LATD &= ~(1<<3); // LCD Disable
 }
 
-void LCD_Char(unsigned char data) {
-    RS = 1; // select data register
-    D4 = (data & 1); // send LSB
-    D5 = (data & 2); // send next bit
-    D6 = (data & 4); // send next bit
-    D7 = (data & 8); // send MSB
-    EN = 1; // enable the LCD
-    __delay_us(1);
-    EN = 0; // disable the LCD
-    __delay_us(1);
-    D4 = (data & 16); // send next bit
-    D5 = (data & 32); // send next bit
-    D6 = (data & 64); // send next bit
-    D7 = (data & 128); // send next bit
-    EN = 1; // enable the LCD
-    __delay_us(1);
-    EN = 0; // disable the LCD
+void LcdRefresh( void )
+{
+    TRISD = 0; //  Select All Pins as Output
+    LATD = 0xff;
+    __delay_ms(2); // Delay
+    LATD = 0;
+    SendLcdCommand( LCD_RESET ); //  LCD Reset
+}
+
+void LcdInit( void )
+{
+    TRISD = 0; //  Select All Pins as Output
+    LATD = 0;
+    __delay_ms(1); // Delay
+    SendLcdCommand( LCD_RESET ); //  LCD Reset
+    __delay_ms(5); // Delay
+    SendLcdCommand( LCD_RESET ); //  LCD Reset
+    __delay_ms(5); // Delay
+    SendLcdCommand(LCD_RESET); //  LCD Reset
+    __delay_ms(5); // Delay
+    SendLcdCommand(LCD_RESET); //  LCD Reset
+    __delay_ms(5); // Delay
+    SendLcdCommand( LCD_RETURN_HOME); //  Set LCD command as 4 byte mode
+    SendLcdCommand( LCD_4BYTE_DISPLAY_MODE); // Set interface data length to 8 bits, number of display lines to 2 and font to 5x8 dots
+    SendLcdCommand( LCD_INCREMENT_CURSOR); //Shift cursor to left 
+    SendLcdCommand( LCD_CLEAR_DISPLAY); // Clear display screen
+    SendLcdCommand( LCD_DISPLAY_ON_CURSOR_OFF); // Display ON Cursor Off
+}
+
+void LcdDisplayString(unsigned char RowNum, unsigned char Pos, char * Data)
+{
+    if( RowNum == 1)
+    {
+        SendLcdCommand(LCD_FIRST_LINE | Pos);
+    }
+    else if( RowNum == 2)
+    {
+        SendLcdCommand(LCD_SECOND_LINE | Pos);
+    }
+
+    while( *Data != '\0')
+    {
+        SendLcdData(*Data);
+        Data++;
+    }
+}
+
+void LcdDisplayChar(unsigned char RowNum, unsigned char Pos, char  Data)
+{
+    if( RowNum == 1)
+    {
+        SendLcdCommand(LCD_FIRST_LINE | Pos);
+    }
+    else if( RowNum == 2)
+    {
+        SendLcdCommand(LCD_SECOND_LINE | Pos);
+    }
+    
+    SendLcdData(Data);
+}
+
+unsigned char ValidateNumber( char *Data )
+{
+    while( *Data != 0)
+    {
+        if( (*Data < '0') || (*Data>'9') )
+        {
+            return 0;
+        }
+        Data++;
+    }
+    return 1;
+}
+
+void LcdDisplayCharNumber(unsigned char RowNum, unsigned char Pos, unsigned char Data)
+{
+   if ((Data >= '0') && (Data <= '9'))
+   {
+      LcdDisplayChar(RowNum, Pos, Data);
+   }
+   else
+   {
+      LcdDisplayChar(RowNum, Pos, '0');
+   }
+}
+
+unsigned char LcdDisplayNumber(unsigned char RowNum, unsigned char Pos, unsigned short Data)
+{
+    DataArray[0] = (unsigned char)(((Data)/1000)+48);
+    DataArray[1] = (unsigned char) ((((Data)/100)%10)+48);
+    DataArray[2] = (unsigned char) ((((Data)/10)%10)+48);
+    DataArray[3] = (unsigned char)(((Data)%10)+48);
+    DataArray[4] = 0;
+    if( ValidateNumber(DataArray))
+    {
+        LcdDisplayString(RowNum,Pos,DataArray);
+        return 1;
+    }
+    else
+    {
+       LcdDisplayString(RowNum,Pos,"0000"); 
+       return 0;
+    }
+}
+
+void LcdClearDisplay( void )
+{
+    SendLcdCommand( LCD_CLEAR_DISPLAY); // Clear display screen
+}
+
+void LcdDisplayOnCursorOn( unsigned char RowNum, unsigned char Pos )
+{
+    SendLcdCommand( LCD_ON_CURSOR_BLINKING); // Display ON Cursor ON
+    
+    if( RowNum == 1)
+    {
+        SendLcdCommand(LCD_FIRST_LINE | Pos);
+    }
+    else if( RowNum == 2)
+    {
+        SendLcdCommand(LCD_SECOND_LINE | Pos);
+    }
+}
+
+void LcdDisplayOnCursorOff( void )
+{
+    SendLcdCommand( LCD_DISPLAY_ON_CURSOR_OFF); // Display ON Cursor Off
+}
+
+void LcdDisplayOffCursorOff( void )
+{
+    SendLcdCommand( LCD_DISPLAY_OFF_CURSOR_OFF ); // Display OFF Cursor Off
+}
+
+void LcdDisplayShiftCursorRight( void )
+{
+    SendLcdCommand( LCD_INCREMENT_CURSOR ); // Display ON Cursor Off
+}
+
+void LcdSetPos( unsigned char RowNum, unsigned char Pos )
+{
+    if( RowNum == 1)
+    {
+        SendLcdCommand(LCD_FIRST_LINE | Pos);
+    }
+    else if( RowNum == 2)
+    {
+        SendLcdCommand(LCD_SECOND_LINE | Pos);
+    }
+}
