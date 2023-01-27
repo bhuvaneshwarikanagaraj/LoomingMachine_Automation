@@ -3,7 +3,7 @@
 #include "lcd.h"
 #include "config.h"
 #define LATD LATD
-#define TRISD TRISD
+#define TRISD TRISD //  Select All Pins as Output
 
 static char DataArray[5];
 

@@ -14,3 +14,5 @@ int main(void)
    __delay_ms(1000);
    }
 }
+
+adding to decline conflicting
